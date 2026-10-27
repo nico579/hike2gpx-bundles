@@ -1,0 +1,28 @@
+# Every Sunday, build the bundles of the French cells and publish them on the
+# "bundles" release of this repository. The logic lives in hike2gpx (reusable
+# workflow), next to the code it runs.
+name: Weekly bundles
+
+on:
+  schedule:
+    - cron: "0 2 * * 0"
+  workflow_dispatch:
+    inputs:
+      cases:
+        description: BRouter cells to build, space separated
+        default: "W10_N45 W5_N40 W5_N45 E0_N40 E0_N45 E0_N50 E5_N40 E5_N45"
+      ref:
+        description: hike2gpx version (branch or tag)
+        default: feat/depot-lots
+
+permissions:
+  contents: write
+
+jobs:
+  bundles:
+    # Until the depot branch is merged, the reusable workflow comes from it;
+    # then this becomes @main and the default ref main.
+    uses: nico579/hike2gpx/.github/workflows/bundles.yml@feat/depot-lots
+    with:
+      cases: ${{ inputs.cases || 'W10_N45 W5_N40 W5_N45 E0_N40 E0_N45 E0_N50 E5_N40 E5_N45' }}
+      ref: ${{ inputs.ref || 'feat/depot-lots' }}
