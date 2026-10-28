@@ -13,16 +13,14 @@ on:
         default: "W10_N45 W5_N40 W5_N45 E0_N40 E0_N45 E0_N50 E5_N40 E5_N45"
       ref:
         description: hike2gpx version (branch or tag)
-        default: feat/depot-lots
+        default: main
 
 permissions:
   contents: write
 
 jobs:
   bundles:
-    # Until the depot branch is merged, the reusable workflow comes from it;
-    # then this becomes @main and the default ref main.
-    uses: nico579/hike2gpx/.github/workflows/bundles.yml@feat/depot-lots
+    uses: nico579/hike2gpx/.github/workflows/bundles.yml@main
     with:
       cases: ${{ inputs.cases || 'W10_N45 W5_N40 W5_N45 E0_N40 E0_N45 E0_N50 E5_N40 E5_N45' }}
-      ref: ${{ inputs.ref || 'feat/depot-lots' }}
+      ref: ${{ inputs.ref || 'main' }}
