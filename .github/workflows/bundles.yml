@@ -6,7 +6,9 @@ name: Weekly bundles
 
 on:
   schedule:
-    - cron: "0 2 * * 0"
+    # Hors de l'heure pile, comme le conseille GitHub : les déclenchements
+    # planifiés s'y accumulent et partent en retard (6 h 37 le 2026-11-08).
+    - cron: "17 2 * * 0"
   workflow_dispatch:
     inputs:
       cases:
