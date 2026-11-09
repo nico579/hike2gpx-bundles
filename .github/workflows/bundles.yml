@@ -1,4 +1,5 @@
-# Every Sunday, build the bundles of the French and Czech cells and publish them on the
+# Every Sunday, build the bundles of the cells with official path data (France,
+# Czechia, Lower Silesia, Switzerland, Germany) and publish them on the
 # "bundles" release of this repository. The logic lives in hike2gpx (reusable
 # workflow), next to the code it runs.
 name: Weekly bundles
@@ -10,7 +11,7 @@ on:
     inputs:
       cases:
         description: BRouter cells to build, space separated
-        default: "W10_N45 W5_N40 W5_N45 E0_N40 E0_N45 E0_N50 E5_N40 E5_N45 E10_N45 E10_N50 E15_N45 E15_N50"
+        default: "W10_N45 W5_N40 W5_N45 E0_N40 E0_N45 E0_N50 E5_N40 E5_N45 E5_N50 E10_N45 E10_N50 E15_N45 E15_N50"
       ref:
         description: hike2gpx version (branch or tag)
         default: main
@@ -22,5 +23,5 @@ jobs:
   bundles:
     uses: nico579/hike2gpx/.github/workflows/bundles.yml@main
     with:
-      cases: ${{ inputs.cases || 'W10_N45 W5_N40 W5_N45 E0_N40 E0_N45 E0_N50 E5_N40 E5_N45 E10_N45 E10_N50 E15_N45 E15_N50' }}
+      cases: ${{ inputs.cases || 'W10_N45 W5_N40 W5_N45 E0_N40 E0_N45 E0_N50 E5_N40 E5_N45 E5_N50 E10_N45 E10_N50 E15_N45 E15_N50' }}
       ref: ${{ inputs.ref || 'main' }}
