@@ -20,6 +20,8 @@ on:
 
 permissions:
   contents: write
+  # Le compte rendu de chaque fabrication (rapports/) lit l'état des jobs du run.
+  actions: read
 
 jobs:
   bundles:
