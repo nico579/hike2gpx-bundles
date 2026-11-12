@@ -17,6 +17,10 @@ on:
       ref:
         description: hike2gpx version (branch or tag)
         default: main
+      forcer:
+        description: Rebuild the bundles that are up to date too (after a change of build rules)
+        type: boolean
+        default: false
 
 permissions:
   contents: write
@@ -29,3 +33,4 @@ jobs:
     with:
       cases: ${{ inputs.cases || 'W10_N45 W5_N40 W5_N45 E0_N40 E0_N45 E0_N50 E5_N40 E5_N45 E5_N50 E10_N45 E10_N50 E15_N45 E15_N50 E20_N45 E20_N50' }}
       ref: ${{ inputs.ref || 'main' }}
+      forcer: ${{ inputs.forcer || false }}
